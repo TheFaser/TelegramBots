@@ -42,7 +42,7 @@ public class RichBlockDetails implements RichBlock {
      * Type of the block, always "details"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * Always shown summary of the block

@@ -42,7 +42,7 @@ public class RichBlockMap implements RichBlock {
      * Type of the block, always "map"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * Location of the center of the map
