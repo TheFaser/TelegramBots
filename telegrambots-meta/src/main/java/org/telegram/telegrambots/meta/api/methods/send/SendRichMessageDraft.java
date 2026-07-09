@@ -77,14 +77,8 @@ public class SendRichMessageDraft extends BotApiMethodBoolean {
 
     @Override
     public void validate() throws TelegramApiValidationException {
-        if (chatId == null) {
-            throw new TelegramApiValidationException("ChatId parameter can't be null", this);
-        }
         if (draftId == null || draftId == 0) {
             throw new TelegramApiValidationException("DraftId parameter must be non-zero", this);
-        }
-        if (richMessage == null) {
-            throw new TelegramApiValidationException("RichMessage parameter can't be null", this);
         }
         richMessage.validate();
     }

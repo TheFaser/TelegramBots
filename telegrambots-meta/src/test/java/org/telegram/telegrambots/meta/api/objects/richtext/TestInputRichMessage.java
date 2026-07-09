@@ -112,4 +112,14 @@ public class TestInputRichMessage {
         TelegramApiValidationException ex = assertThrows(TelegramApiValidationException.class, message::validate);
         assertEquals("Only one of html or markdown parameter can be provided", ex.getMessage());
     }
+
+    @Test
+    public void testValidateWithEmptyHtmlThrows() {
+        InputRichMessage message = InputRichMessage.builder()
+                .html("")
+                .build();
+
+        TelegramApiValidationException ex = assertThrows(TelegramApiValidationException.class, message::validate);
+        assertTrue(ex.getMessage().contains("Either html or markdown"));
+    }
 }

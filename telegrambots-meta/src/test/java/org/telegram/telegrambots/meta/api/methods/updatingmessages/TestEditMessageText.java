@@ -91,4 +91,19 @@ public class TestEditMessageText {
 
         assertThrows(TelegramApiValidationException.class, method::validate);
     }
+
+    @Test
+    public void testEditMessageTextWithBothTextAndRichMessagePasses() {
+        InputRichMessage richMessage = InputRichMessage.builder()
+                .html("<p>Hello</p>")
+                .build();
+        EditMessageText method = EditMessageText.builder()
+                .chatId("123456")
+                .messageId(1)
+                .text("Hello world")
+                .richMessage(richMessage)
+                .build();
+
+        assertDoesNotThrow(method::validate);
+    }
 }

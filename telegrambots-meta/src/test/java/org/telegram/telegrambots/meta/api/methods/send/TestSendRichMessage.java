@@ -2,6 +2,7 @@ package org.telegram.telegrambots.meta.api.methods.send;
 
 import org.junit.jupiter.api.Test;
 import org.telegram.telegrambots.meta.api.objects.richtext.InputRichMessage;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiValidationException;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -50,7 +51,7 @@ public class TestSendRichMessage {
                 .richMessage(invalidRichMessage)
                 .build();
 
-        assertThrows(Exception.class, method::validate);
+        assertThrows(TelegramApiValidationException.class, method::validate);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class TestSendRichMessage {
                 .richMessage(invalidRichMessage)
                 .build();
 
-        assertThrows(Exception.class, method::validate);
+        assertThrows(TelegramApiValidationException.class, method::validate);
     }
 
     @Test
