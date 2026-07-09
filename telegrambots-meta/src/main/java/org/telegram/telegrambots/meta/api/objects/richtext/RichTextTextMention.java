@@ -1,9 +1,7 @@
 package org.telegram.telegrambots.meta.api.objects.richtext;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -24,11 +22,9 @@ import org.telegram.telegrambots.meta.api.objects.User;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichTextTextMention implements RichText {
     public static final String TYPE = "text_mention";
     private static final String TYPE_FIELD = "type";
@@ -39,7 +35,7 @@ public class RichTextTextMention implements RichText {
      * Type of the rich text, always "text_mention"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * The text

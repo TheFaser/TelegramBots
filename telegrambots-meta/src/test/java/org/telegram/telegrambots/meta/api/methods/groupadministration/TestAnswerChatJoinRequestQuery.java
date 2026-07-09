@@ -74,6 +74,16 @@ public class TestAnswerChatJoinRequestQuery {
     }
 
     @Test
+    public void testAnswerChatJoinRequestQueryValidationInvalidResult() {
+        AnswerChatJoinRequestQuery method = AnswerChatJoinRequestQuery.builder()
+                .chatJoinRequestQueryId("query123")
+                .result("banana")
+                .build();
+
+        assertThrows(TelegramApiValidationException.class, method::validate);
+    }
+
+    @Test
     public void testAnswerChatJoinRequestQueryFields() {
         AnswerChatJoinRequestQuery method = AnswerChatJoinRequestQuery.builder()
                 .chatJoinRequestQueryId("query123")
@@ -82,5 +92,23 @@ public class TestAnswerChatJoinRequestQuery {
 
         assertEquals("query123", method.getChatJoinRequestQueryId());
         assertEquals("approve", method.getResult());
+    }
+
+    @Test
+    public void testAnswerChatJoinRequestQueryNullQueryIdThrowsNPE() {
+        assertThrows(NullPointerException.class, () ->
+            AnswerChatJoinRequestQuery.builder()
+                .chatJoinRequestQueryId(null)
+                .result("approve")
+                .build());
+    }
+
+    @Test
+    public void testAnswerChatJoinRequestQueryNullResultThrowsNPE() {
+        assertThrows(NullPointerException.class, () ->
+            AnswerChatJoinRequestQuery.builder()
+                .chatJoinRequestQueryId("query123")
+                .result(null)
+                .build());
     }
 }

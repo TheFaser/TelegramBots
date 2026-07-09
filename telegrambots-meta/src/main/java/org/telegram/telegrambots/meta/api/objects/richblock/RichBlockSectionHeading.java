@@ -1,9 +1,7 @@
 package org.telegram.telegrambots.meta.api.objects.richblock;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -24,11 +22,9 @@ import org.telegram.telegrambots.meta.api.objects.richtext.RichText;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichBlockSectionHeading implements RichBlock {
     public static final String TYPE = "heading";
     private static final String TYPE_FIELD = "type";
@@ -39,7 +35,7 @@ public class RichBlockSectionHeading implements RichBlock {
      * Type of the block, always "heading"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * Text of the block

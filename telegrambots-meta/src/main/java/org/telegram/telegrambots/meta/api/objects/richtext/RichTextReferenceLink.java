@@ -1,9 +1,7 @@
 package org.telegram.telegrambots.meta.api.objects.richtext;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -23,11 +21,9 @@ import lombok.extern.jackson.Jacksonized;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichTextReferenceLink implements RichText {
     public static final String TYPE = "reference_link";
     private static final String TYPE_FIELD = "type";
@@ -38,7 +34,7 @@ public class RichTextReferenceLink implements RichText {
      * Type of the rich text, always "reference_link"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * The link text

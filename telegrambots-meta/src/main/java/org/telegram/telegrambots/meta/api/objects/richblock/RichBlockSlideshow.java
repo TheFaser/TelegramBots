@@ -1,7 +1,6 @@
 package org.telegram.telegrambots.meta.api.objects.richblock;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,7 +26,6 @@ import java.util.List;
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichBlockSlideshow implements RichBlock {
     public static final String TYPE = "slideshow";
     private static final String TYPE_FIELD = "type";
@@ -38,7 +36,7 @@ public class RichBlockSlideshow implements RichBlock {
      * Type of the block, always "slideshow"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * Elements of the slideshow

@@ -1,7 +1,6 @@
 package org.telegram.telegrambots.meta.api.objects.richblock;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,7 +24,6 @@ import lombok.extern.jackson.Jacksonized;
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichBlockMathematicalExpression implements RichBlock {
     public static final String TYPE = "mathematical_expression";
     private static final String TYPE_FIELD = "type";
@@ -35,7 +33,7 @@ public class RichBlockMathematicalExpression implements RichBlock {
      * Type of the block, always "mathematical_expression"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * The mathematical expression in LaTeX format

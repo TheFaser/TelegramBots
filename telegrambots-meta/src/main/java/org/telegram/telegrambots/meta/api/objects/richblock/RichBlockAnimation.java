@@ -1,7 +1,6 @@
 package org.telegram.telegrambots.meta.api.objects.richblock;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -26,7 +25,6 @@ import org.telegram.telegrambots.meta.api.objects.games.Animation;
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichBlockAnimation implements RichBlock {
     public static final String TYPE = "animation";
     private static final String TYPE_FIELD = "type";
@@ -38,7 +36,7 @@ public class RichBlockAnimation implements RichBlock {
      * Type of the block, always "animation"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * The animation

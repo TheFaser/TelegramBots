@@ -1,7 +1,6 @@
 package org.telegram.telegrambots.meta.api.objects.richtext;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,7 +24,6 @@ import lombok.extern.jackson.Jacksonized;
 @SuperBuilder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RichTextCode implements RichText {
     public static final String TYPE = "code";
     private static final String TYPE_FIELD = "type";
@@ -35,7 +33,7 @@ public class RichTextCode implements RichText {
      * Type of the rich text, always "code"
      */
     @JsonProperty(TYPE_FIELD)
-    private String type = TYPE;
+    private final String type = TYPE;
 
     /**
      * The text
