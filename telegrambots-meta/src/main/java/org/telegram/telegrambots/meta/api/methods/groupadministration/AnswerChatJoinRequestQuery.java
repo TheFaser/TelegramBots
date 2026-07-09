@@ -62,5 +62,8 @@ public class AnswerChatJoinRequestQuery extends BotApiMethodBoolean {
         if (result == null || result.isEmpty()) {
             throw new TelegramApiValidationException("Result parameter can't be empty", this);
         }
+        if (!result.equals("approve") && !result.equals("decline") && !result.equals("queue")) {
+            throw new TelegramApiValidationException("Result parameter must be one of: approve, decline, queue", this);
+        }
     }
 }
