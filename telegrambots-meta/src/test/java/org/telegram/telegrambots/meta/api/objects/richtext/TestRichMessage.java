@@ -1,13 +1,19 @@
 package org.telegram.telegrambots.meta.api.objects.richtext;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.api.objects.message.Message;
 import org.telegram.telegrambots.meta.api.objects.richblock.RichBlock;
 import org.telegram.telegrambots.meta.api.objects.richblock.RichBlockDivider;
 import org.telegram.telegrambots.meta.api.objects.richblock.RichBlockParagraph;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,6 +22,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 10.1
  */
 public class TestRichMessage {
+    private ObjectMapper mapper;
+
+    @BeforeEach
+    void setUp() {
+        mapper = new ObjectMapper();
+    }
 
     @Test
     public void testRichMessageWithBlocks() {
@@ -68,5 +80,16 @@ public class TestRichMessage {
                 .build();
 
         assertNull(message.getIsRtl());
+    }
+
+    @Test
+    public void testMessageRichMessageDeserialization() throws IOException {
+        String json = "{\"message_id\":1,\"date\":1000,\"chat\":{\"id\":123,\"type\":\"private\"},\"from\":{\"id\":456,\"is_bot\":false,\"first_name\":\"Test\"},\"rich_message\":{\"blocks\":[{\"type\":\"paragraph\",\"text\":{\"type\":\"anchor\",\"name\":\"test\"}}]}}";
+        Message message = mapper.readValue(json, Message.class);
+
+        assertNotNull(message.getRichMessage());
+        assertNotNull(message.getRichMessage().getBlocks());
+        assertEquals(1, message.getRichMessage().getBlocks().size());
+        assertInstanceOf(RichBlockParagraph.class, message.getRichMessage().getBlocks().get(0));
     }
 }
