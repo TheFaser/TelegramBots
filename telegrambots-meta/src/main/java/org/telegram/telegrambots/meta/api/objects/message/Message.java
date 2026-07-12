@@ -57,6 +57,7 @@ import org.telegram.telegrambots.meta.api.objects.giveaway.GiveawayCreated;
 import org.telegram.telegrambots.meta.api.objects.giveaway.GiveawayWinners;
 import org.telegram.telegrambots.meta.api.objects.location.Location;
 import org.telegram.telegrambots.meta.api.objects.managed.ManagedBotCreated;
+import org.telegram.telegrambots.meta.api.objects.richtext.RichMessage;
 import org.telegram.telegrambots.meta.api.objects.messageorigin.MessageOrigin;
 import org.telegram.telegrambots.meta.api.objects.passport.PassportData;
 import org.telegram.telegrambots.meta.api.objects.payments.DirectMessagePriceChanged;
@@ -223,6 +224,7 @@ public class Message implements MaybeInaccessibleMessage {
     private static final String MANAGED_BOT_CREATED_FIELD = "managed_bot_created";
     private static final String POLL_OPTION_ADDED_FIELD = "poll_option_added";
     private static final String POLL_OPTION_DELETED_FIELD = "poll_option_deleted";
+    private static final String RICH_MESSAGE_FIELD = "rich_message";
 
     /**
      * Unique message identifier inside this chat. In specific instances (e.g., message containing a video sent to a big chat),
@@ -977,6 +979,12 @@ public class Message implements MaybeInaccessibleMessage {
      */
     @JsonProperty(POLL_OPTION_DELETED_FIELD)
     private PollOptionDeleted pollOptionDeleted;
+    /**
+     * Optional.
+     * Message is a rich formatted message
+     */
+    @JsonProperty(RICH_MESSAGE_FIELD)
+    private RichMessage richMessage;
 
     public List<MessageEntity> getEntities() {
         if (entities != null) {
